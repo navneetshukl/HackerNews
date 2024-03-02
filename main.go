@@ -1,17 +1,17 @@
 package main
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/navneetshukl/hackernews-concurrency/routes"
+)
 
 func main() {
-	app := fiber.New()
+	app := gin.Default()
 
-	app.Get("/", func(c *fiber.Ctx) error {
-		// return c.SendString("Hello I am Navneet Shukla")
-		return c.JSON(fiber.Map{
-			"name": "Navneet Shukla",
-		})
-	})
+	app.LoadHTMLGlob("./templates/*.tmpl")
 
-	app.Listen(":8080")
+	app.GET("/", routes.GetNews)
+
+	app.Run(":8080")
 
 }
