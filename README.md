@@ -1,6 +1,6 @@
-# HackerNews Concurrency
+# HackerNews
 
-HackerNews Concurrency is a Go package designed to fetch and display the top stories from Hacker News using concurrency. It leverages goroutines to concurrently fetch multiple stories, enhancing performance and efficiency.
+HackerNews  is a Go package designed to fetch and display the top stories from Hacker News using concurrency. It leverages goroutines to concurrently fetch multiple stories, enhancing performance and efficiency.
 
 ## Overview
 
