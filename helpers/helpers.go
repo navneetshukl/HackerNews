@@ -5,6 +5,7 @@ import (
 	"net/url"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/navneetshukl/hackernews-concurrency/client"
 	"github.com/navneetshukl/hackernews-concurrency/models"
@@ -86,4 +87,24 @@ func GetStories() ([]models.ModifiedItem, error) {
 
 	return stories, nil
 
+}
+
+var (
+	cache           []models.ModifiedItem
+	cacheExpiration time.Time
+)
+
+// GetCachedStories function will cache the story
+func GetCachedStories() ([]models.ModifiedItem, error) {
+
+	if time.Now().Sub(cacheExpiration) < 0 { // cache is not expired
+		return cache, nil
+	}
+	stories, err := GetStories()
+	if err != nil {
+		return nil, err
+	}
+	cache = stories
+	cacheExpiration = time.Now().Add(1 * time.Second)
+	return cache, nil
 }

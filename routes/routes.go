@@ -14,7 +14,7 @@ import (
 func GetNews(c *gin.Context) {
 
 	start := time.Now()
-	stories, err := helpers.GetStories()
+	stories, err := helpers.GetCachedStories()
 
 	if err != nil {
 		log.Println("Error in getting the Stories ", err)
